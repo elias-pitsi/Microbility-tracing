@@ -5,3 +5,6 @@
 ## Components Table Mock Data 
 
 ![](images/MockJson.PNG)
+
+## Cosmos DB Partition Key 
+- OwnerID 
