@@ -1,15 +1,25 @@
+using Microsoft.Azure.Documents;
+using Microsoft.Azure.Documents.Client;
+using Microsoft.EntityFrameworkCore;
+using Tracing.DataAccess.DataContext;
+using Tracing.Repositories.application;
+using Tracing.Repositories.interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddScoped<ITracingRepo, CosmosTracingRepo>();
+builder.Services.AddSingleton<IDocumentClient>(x =>
+    new DocumentClient(new Uri(builder.Configuration["CosmosDB:AccountUrl"]), builder.Configuration["CosmosDB: PrimaryKey"]));
+builder.Services.AddDbContext<TracingContext>(options => {
+    options.UseCosmos(builder.Configuration.GetConnectionString("DefaultConnection"), "Owner");
+}); 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -17,9 +27,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
