@@ -1,10 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tracing.DataAccess.Models
 {
@@ -16,8 +11,10 @@ namespace Tracing.DataAccess.Models
         public string Surname { get; set; } = string.Empty;
         [EmailAddress]
         public string email { get; set; } = string.Empty;
-        //public List<Component>? Components { get; set; }
-        public List<Bike>? Bikes { get; set; }
+        
+        public string Password { get; set; } = String.Empty;
+       
+        public List<Bike>? Bikes { get; set; } = new List<Bike>();
 
         public override string ToString()
         {

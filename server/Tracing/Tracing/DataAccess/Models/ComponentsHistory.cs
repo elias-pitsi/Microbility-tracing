@@ -12,6 +12,7 @@ namespace Tracing.DataAccess.Models
         [JsonProperty(PropertyName = "compid")]
         public Guid CompId { get; set; } = Guid.NewGuid();
         public string ComponentName { get; set; } = string.Empty;
+        public Owner? Owner { get; set; } 
         public DateTimeOffset CreatedDate { get; set; } = DateTimeOffset.Now;
 
         public override string ToString()

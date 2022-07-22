@@ -21,7 +21,6 @@ builder.Services.AddDbContext<TracingContext>(options => {
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection(JwtSettings.SectionName));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-//builder.Services.AddAutoMapper(typeof(TracingProfile).Assembly);
 
 var app = builder.Build();
 

@@ -1,8 +1,7 @@
-﻿namespace Tracing.Services.implementation;
+﻿using Tracing.DataAccess.Models;
+
+namespace Tracing.Services.implementation;
 
 public record AuthenticationResult(
-    Guid Id, 
-    string FirstName, 
-    string LastName, 
-    string Email, 
+    Owner owner,
     string Token);

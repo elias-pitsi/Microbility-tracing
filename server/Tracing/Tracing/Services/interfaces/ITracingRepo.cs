@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Tracing.DataAccess.Models;
+﻿using Tracing.DataAccess.Models;
 
 namespace Tracing.Services.interfaces
 {
     public interface ITracingRepo
     {
-      public  IEnumerable<Owner> GetAll();
-      Owner GetOwner(Guid ownerID);
-     void CreateOwner(Owner owner); 
+        void CreateOwner(Owner owner); 
+     
+        Owner GetOwnerByEmail(string email);
+        IEnumerable<Owner> GetOwnerItems();
     }
 }

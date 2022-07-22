@@ -5,8 +5,8 @@ namespace Tracing.DataAccess.Models;
 public class Bike
 {
     [JsonProperty(PropertyName = "bikeid")]
-    public Guid BikeId { get; set; }
-    public List<Component> Components { get; set; } = new();
+    public Guid BikeId { get; set; } = Guid.NewGuid();
+    public List<ComponentDetails> Components { get; set; } = new();
 
     public override string ToString()
     {

@@ -11,6 +11,8 @@ namespace Tracing.DataAccess.Dtos
         public string Surname { get; set; } = string.Empty;
         [EmailAddress]
         public string email { get; set; } = string.Empty;
+
+        public string Password { get; set; } = String.Empty;
         
         public override string ToString()
         {

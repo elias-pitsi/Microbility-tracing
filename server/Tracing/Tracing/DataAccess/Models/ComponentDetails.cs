@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Tracing.DataAccess.Models
 {
-    public class Component
+    public class ComponentDetails
     {
         [JsonProperty(PropertyName = "compid")]
         public Guid CompId { get; set; } = Guid.NewGuid();

@@ -1,6 +1,8 @@
-﻿namespace Tracing.Services.interfaces;
+﻿using Tracing.DataAccess.Models;
+
+namespace Tracing.Services.interfaces;
 
 public interface IJwtTokenGenerator
 {
-    string GenerateToken(Guid userId, string firstName, string LastName); 
+    string GenerateToken(Owner owner); 
 }
