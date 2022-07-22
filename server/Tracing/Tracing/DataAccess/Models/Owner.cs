@@ -14,15 +14,10 @@ namespace Tracing.DataAccess.Models
         public Guid OwnerId { get; set; } = Guid.NewGuid();
         public string Name { get; set; } = string.Empty;
         public string Surname { get; set; } = string.Empty;
-        public string PartitionKey { get; set; }
         [EmailAddress]
         public string email { get; set; } = string.Empty;
-        public string password { get; set; } = string.Empty;
-        public List<Component>? Components { get; set; }
+        //public List<Component>? Components { get; set; }
         public List<Bike>? Bikes { get; set; }
-        public int NumberOfBikes { get; set; }
-
-        public Owner() => NumberOfBikes = Bikes.Count;
 
         public override string ToString()
         {

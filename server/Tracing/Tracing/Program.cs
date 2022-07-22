@@ -2,21 +2,23 @@ using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.EntityFrameworkCore;
 using Tracing.DataAccess.DataContext;
-using Tracing.Repositories.application;
-using Tracing.Repositories.interfaces;
+using Tracing.DataAccess.Profiles;
+using Tracing.Services.implementation;
+using Tracing.Services.interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddScoped<ITracingRepo, CosmosTracingRepo>();
+builder.Services.AddScoped<IOwnerRegistration, OwnerRegistration>();
 builder.Services.AddSingleton<IDocumentClient>(x =>
     new DocumentClient(new Uri(builder.Configuration["CosmosDB:AccountUrl"]), builder.Configuration["CosmosDB: PrimaryKey"]));
 builder.Services.AddDbContext<TracingContext>(options => {
-    options.UseCosmos(builder.Configuration.GetConnectionString("DefaultConnection"), "Owner");
+    options.UseCosmos(builder.Configuration.GetConnectionString("DefaultConnection"), "Tracing");
 }); 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+//builder.Services.AddAutoMapper(typeof(TracingProfile).Assembly);
 
 var app = builder.Build();
 
