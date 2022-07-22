@@ -7,7 +7,7 @@ using Tracing.Services.interfaces;
 namespace Tracing.Controllers;
 
 [ApiController]
-[Route("auth")]
+[Route("api/[controller]")]
 public class AuthenticationController : ControllerBase
 {
     private readonly IOwnerRegistration _register;
@@ -39,7 +39,7 @@ public class AuthenticationController : ControllerBase
     }
     
     [HttpPost("login")]
-    public IActionResult Login(OwnerReadDto request)
+    public IActionResult Login(OwnerRegistrationDetails request)
     {
         var authResult = _register.Login(
             request.email, 

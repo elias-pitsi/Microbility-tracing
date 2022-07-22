@@ -19,25 +19,13 @@ namespace Tracing.DataAccess.DataContext
             {
                 p.ToContainer("Owner");
                 p.HasPartitionKey(x => x.OwnerId);
-                p.OwnsMany(b => b.Bikes);
+                p.OwnsMany(b => b.Bikes, n => 
+                {
+                    n.OwnsMany(c => c.Components);
+                });
                 p.HasKey(c => c.OwnerId);
             });
             // base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Bike>(p =>
-            {
-                p.ToContainer("Bike");
-                p.HasPartitionKey(x => x.BikeId);
-                p.OwnsMany(c => c.Components);
-                p.HasKey(k => k.BikeId); 
-            });
-
-            modelBuilder.Entity<ComponentDetails>(p => 
-            {
-                p.ToContainer("Components");
-                p.HasPartitionKey(x => x.CompId);
-                p.HasKey(k => k.CompId); 
-            });
 
             modelBuilder.Entity<ComponentsHistory>(p =>
             {
