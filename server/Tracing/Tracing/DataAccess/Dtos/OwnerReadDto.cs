@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using Tracing.DataAccess.Models;
 
 namespace Tracing.DataAccess.Dtos
 {
